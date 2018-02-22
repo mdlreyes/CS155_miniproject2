@@ -9,6 +9,8 @@ def main():
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
     MODE = 2: (d) Ten movies from the **A** genres you selected in Section 4
     MODE = 3: Movies randomly picked
+    MODE = 4: (b) The ten most popular movies
+    MODE = 5: (c) The ten best movies
     '''
 
     f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])

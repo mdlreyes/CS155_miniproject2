@@ -23,7 +23,7 @@ def main():
         r = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
     elif MODE == 2:
         r = []
-        for i in range(len(f)):    
+        for i in range(len(f)):
             if f[genre][i] == 1:
                 r.append(i)
             if len(r) > 9:
@@ -38,9 +38,10 @@ def main():
         r = list(topmovies-1)
     elif MODE == 6:
         #Add yo shit here, bitchs:
-        lees_list   = []
-        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
+
+        lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
         devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
+        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
@@ -126,7 +127,7 @@ def load_top():
     popmovies = np.argsort(numratings)[-10:] + 1
     popdata = data[np.where(np.in1d(data[:,1],popmovies))]
 
-    # Get data for 10 best movies 
+    # Get data for 10 best movies
     topmovies = np.argsort(avgratings)[-10:] + 1
     topdata = data[np.where(np.in1d(data[:,1],topmovies))]
     print("data", data[:,1])

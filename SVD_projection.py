@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 6
+    MODE = 7
 
 
     '''
@@ -40,8 +40,8 @@ def main():
     elif MODE == 6:
         #Add yo shit here, bitchs:
         lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
-        devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
-        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
+        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590, ]
+        mias_list   = [0, 7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
@@ -72,12 +72,14 @@ def main():
 
         # Make Plots
 
+        color = [.8, .8, .8]
+
         if MODE < 6 :
-            plt.scatter(V_tilde[0],V_tilde[1], c=[.8, .8, .8])#"k", alpha = .1)
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             for i in range(len(r)):
                 plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
         elif MODE == 6:
-            plt.scatter(V_tilde[0],V_tilde[1], c=[.8, .8, .8])#"k", alpha = .1)
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
             plt.scatter(V_tilde[0][mias_list],V_tilde[1][mias_list], label = "Mia's Movies")
             plt.scatter(V_tilde[0][devins_list],V_tilde[1][devins_list], label = "Devin's Movies")

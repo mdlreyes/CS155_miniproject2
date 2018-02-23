@@ -4,7 +4,12 @@ import pandas as pd
 
 def main():
     genre = "Horror"
+<<<<<<< HEAD
     MODE = 6
+=======
+    MODE = 7
+
+>>>>>>> 080f846bab48258080e7812e68d002d35bb4b2dc
 
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
@@ -38,14 +43,18 @@ def main():
         r = list(topmovies-1)
     elif MODE == 6:
         #Add yo shit here, bitchs:
-
         lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
-        devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
-        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
+        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590, ]
+        mias_list   = [0, 7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
+<<<<<<< HEAD
     for filename in ['basicHW','withbiasHW', 'withglobalbiasHW', 'shelf']:
+=======
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf']:
+        # print filename
+>>>>>>> 080f846bab48258080e7812e68d002d35bb4b2dc
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
         U = np.genfromtxt(location+'U_' + filename + '.txt', dtype='double')
@@ -71,12 +80,14 @@ def main():
 
         # Make Plots
 
+        color = [.8, .8, .8]
+
         if MODE < 6 :
-            plt.scatter(V_tilde[0],V_tilde[1], c='b')
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             for i in range(len(r)):
                 plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
         elif MODE == 6:
-            plt.scatter(V_tilde[0],V_tilde[1], c='b')
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
             plt.scatter(V_tilde[0][mias_list],V_tilde[1][mias_list], label = "Mia's Movies")
             plt.scatter(V_tilde[0][devins_list],V_tilde[1][devins_list], label = "Devin's Movies")
@@ -96,7 +107,7 @@ def main():
             title = "2D SVD of movie matrix file: %s with top movies" %filename
         elif MODE == 6:
             title = "2D SVD of movie matrix file: %s with Mia/Devin/Lee movies" %filename
-        elif MODE == 7:
+        elif MODE == 7: 
             title = "2D SVD of movie matrix file: %s colored by average rating" %filename
         plt.title(title)
 
@@ -110,8 +121,13 @@ def load_top():
     Y_train = np.loadtxt('data/train.txt').astype(int)
     Y_test = np.loadtxt('data/test.txt').astype(int)
     data = np.vstack((Y_train, Y_test))
+<<<<<<< HEAD
     movieids = np.genfromtxt('data/movies.txt', delimiter='\t', usecols=0, dtype='int')
     print(movieids.shape)
+=======
+    movieids    = np.genfromtxt('data/movies.txt', delimiter='\t', usecols=0, dtype='int')
+    print(len(movieids))
+>>>>>>> 080f846bab48258080e7812e68d002d35bb4b2dc
 
     # Compute average ratings and number of ratings for each movie
     avgratings = np.zeros(1682)

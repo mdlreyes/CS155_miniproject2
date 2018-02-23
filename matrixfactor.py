@@ -99,20 +99,20 @@ def runmodel(bias):
     if bias=='simple':
         U, V, err, a, b = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = err
-        E_test = get_err(U, V, Y_test, a, b)
+        E_train = np.sqrt(err/len(E_train))
+        E_test = np.sqrt(get_err(U, V, Y_test, a, b)/len(E_test))
 
     elif bias=='global':
         U, V, err, a, b, mu = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = err
-        E_test = get_err(U, V, Y_test, a, b, mu)
+        E_train = np.sqrt(err/len(E_train))
+        E_test = np.sqrt(get_err(U, V, Y_test, a, b, mu)/len(E_test))
 
     else:
         U, V, err = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = err
-        E_test = get_err(U, V, Y_test)
+        E_train = np.sqrt(err/len(E_train))
+        E_test = np.sqrt(get_err(U, V, Y_test)/len(E_test))
 
     print 'training, test errors:', E_train, E_test
 
@@ -139,6 +139,6 @@ if __name__ == "__main__":
     #visualize(Y_train, Y_test)
 
     # Do the main training
-    #runmodel(bias='none')
-    #runmodel(bias='simple')
+    runmodel(bias='none')
+    runmodel(bias='simple')
     runmodel(bias='global')

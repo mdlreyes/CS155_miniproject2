@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 7
+    MODE = 8
 
 
     '''
@@ -15,6 +15,7 @@ def main():
     MODE = 5: (c) The ten best movies
     MODE = 6: Lee's, Devin's, and Mia's lists
     MODE = 7: Movies colored by avg rating
+    MODE = 8: Movies colored by num rating
     '''
 
     f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
@@ -86,6 +87,11 @@ def main():
         elif MODE == 7:
             plt.scatter(V_tilde[0],V_tilde[1], c=avgratings, cmap="plasma")
             plt.colorbar()
+        elif MODE == 8:
+            highpop = np.where(numratings > 300)[0]
+            print V_tilde[0][highpop]
+            plt.scatter(V_tilde[0][highpop], V_tilde[1][highpop], c=numratings[highpop], cmap="plasma")
+            plt.colorbar()
 
         if MODE == 1:
             title = "2D SVD of movie matrix file: %s with hand picked movies" %filename
@@ -101,6 +107,8 @@ def main():
             title = "2D SVD of movie matrix file: %s with Mia/Devin/Lee movies" %filename
         elif MODE == 7: 
             title = "2D SVD of movie matrix file: %s colored by average rating" %filename
+        elif MODE == 8: 
+            title = "2D SVD of movie matrix file: %s colored by number of ratings" %filename
         plt.title(title)
 
         plt.xlabel("SVD Dimension 1 [Arbitrary Units]")

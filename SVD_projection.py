@@ -4,7 +4,8 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 6
+    MODE = 5
+
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
     MODE = 2: (d) Ten movies from the **A** genres you selected in Section 4
@@ -36,8 +37,8 @@ def main():
     elif MODE == 6:
         #Add yo shit here, bitchs:
         lees_list   = []
-        mias_list   = []
-        devins_list = [17, 63, 68, 95, 97,]
+        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
+        devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
 
 
     location = 'UVmatrices/'

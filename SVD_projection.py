@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 3
+    MODE = 2
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
     MODE = 2: (d) Ten movies from the **A** genres you selected in Section 4
@@ -30,9 +30,9 @@ def main():
         for _ in range(10):
             r.append(np.random.randint(len(f)))
     elif MODE == 4:
-        r = list(popmovies)
+        r = list(popmovies-1)
     elif MODE == 5:
-        r = list(topmovies)
+        r = list(topmovies-1)
 
 
     location = 'UVmatrices/'

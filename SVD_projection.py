@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 5
+    MODE = 6
 
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
@@ -46,7 +46,6 @@ def main():
 
     location = 'UVmatrices/'
     for filename in ['basicHW','withbiasHW', 'withglobalbiasHW', 'shelf']:
-        print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
         U = np.genfromtxt(location+'U_' + filename + '.txt', dtype='double')
@@ -111,11 +110,12 @@ def load_top():
     Y_train = np.loadtxt('data/train.txt').astype(int)
     Y_test = np.loadtxt('data/test.txt').astype(int)
     data = np.vstack((Y_train, Y_test))
-    movieids    = np.genfromtxt('data/movies.txt', delimiter='\t', usecols=0, dtype='int')
+    movieids = np.genfromtxt('data/movies.txt', delimiter='\t', usecols=0, dtype='int')
+    print(movieids.shape)
 
     # Compute average ratings and number of ratings for each movie
-    avgratings = np.zeros(len(movieids))
-    numratings = np.zeros(len(movieids))
+    avgratings = np.zeros(1682)
+    numratings = np.zeros(1682)
 
     for i in range(len(data)):
         numratings[data[i,1]-1] += 1.

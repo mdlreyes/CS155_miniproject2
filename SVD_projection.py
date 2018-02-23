@@ -5,6 +5,7 @@ import pandas as pd
 def main():
     genre = "Horror"
     MODE = 5
+
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
     MODE = 2: (d) Ten movies from the **A** genres you selected in Section 4
@@ -33,10 +34,15 @@ def main():
         r = list(popmovies-1)
     elif MODE == 5:
         r = list(topmovies-1)
+    elif MODE == 6:
+        #Add yo shit here, bitchs:
+        lees_list   = []
+        mias_list   = [0,7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
+        devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW','withbiasHW', 'withglobalbiasHW']:
+    for filename in ['basicHW','withbiasHW', 'withglobalbiasHW', 'shelf']:
         print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -63,8 +69,14 @@ def main():
 
         # Make Plots
         plt.scatter(V_tilde[0],V_tilde[1], c='b')
-        for i in range(len(r)):
-            plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
+
+        if MODE < 6 :
+            for i in range(len(r)):
+                plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
+        elif MODE == 6:
+            plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
+            plt.scatter(V_tilde[0][mias_list],V_tilde[1][mias_list], label = "Mia's Movies")
+            plt.scatter(V_tilde[0][devins_list],V_tilde[1][devins_list], label = "Devin's Movies")
 
         if MODE == 1:
             title = "2D SVD of movie matrix file: %s with hand picked movies" %filename
@@ -75,6 +87,8 @@ def main():
         elif MODE == 4:
             title = "2D SVD of movie matrix file: %s with popular movies" %filename
         elif MODE == 5:
+            title = "2D SVD of movie matrix file: %s with top movies" %filename
+        elif MODE == 6:
             title = "2D SVD of movie matrix file: %s with top movies" %filename
         plt.title(title)
 

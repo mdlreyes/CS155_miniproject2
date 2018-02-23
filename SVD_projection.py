@@ -72,12 +72,14 @@ def main():
 
         # Make Plots
 
+        color = [.8, .8, .8]
+
         if MODE < 6 :
-            plt.scatter(V_tilde[0],V_tilde[1], c=[.8, .8, .8])#"k", alpha = .1)
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             for i in range(len(r)):
                 plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
         elif MODE == 6:
-            plt.scatter(V_tilde[0],V_tilde[1], c=[.8, .8, .8])#"k", alpha = .1)
+            plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
             plt.scatter(V_tilde[0][mias_list],V_tilde[1][mias_list], label = "Mia's Movies")
             plt.scatter(V_tilde[0][devins_list],V_tilde[1][devins_list], label = "Devin's Movies")

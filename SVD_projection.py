@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 5
+    MODE = 7
 
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.

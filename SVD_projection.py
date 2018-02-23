@@ -37,7 +37,7 @@ def main():
         #Add yo shit here, bitchs:
         lees_list   = []
         mias_list   = []
-        devins_list = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
+        devins_list = [17, 63, 68, 95, 97,]
 
 
     location = 'UVmatrices/'

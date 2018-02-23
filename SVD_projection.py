@@ -12,10 +12,12 @@ def main():
     MODE = 3: Movies randomly picked
     MODE = 4: (b) The ten most popular movies
     MODE = 5: (c) The ten best movies
+    MODE = 6: Lee's, Devin's, and Mia's lists
+    MODE = 7: Movies colored by avg rating
     '''
 
     f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
-    popmovies, topmovies = load_top() #load popular and top data
+    popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
 
     if MODE == 1:
         r = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
@@ -69,15 +71,19 @@ def main():
         print("Tilde Shapes: ", V_tilde.shape, U_tilde.shape)
 
         # Make Plots
-        plt.scatter(V_tilde[0],V_tilde[1], c='b')
 
         if MODE < 6 :
+            plt.scatter(V_tilde[0],V_tilde[1], c='b')
             for i in range(len(r)):
                 plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
         elif MODE == 6:
+            plt.scatter(V_tilde[0],V_tilde[1], c='b')
             plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
             plt.scatter(V_tilde[0][mias_list],V_tilde[1][mias_list], label = "Mia's Movies")
             plt.scatter(V_tilde[0][devins_list],V_tilde[1][devins_list], label = "Devin's Movies")
+        elif MODE == 7:
+            plt.scatter(V_tilde[0],V_tilde[1], c=avgratings, cmap="plasma")
+            plt.colorbar()
 
         if MODE == 1:
             title = "2D SVD of movie matrix file: %s with hand picked movies" %filename
@@ -90,15 +96,15 @@ def main():
         elif MODE == 5:
             title = "2D SVD of movie matrix file: %s with top movies" %filename
         elif MODE == 6:
-            title = "2D SVD of movie matrix file: %s with top movies" %filename
+            title = "2D SVD of movie matrix file: %s with Mia/Devin/Lee movies" %filename
+        elif MODE == 7:
+            title = "2D SVD of movie matrix file: %s colored by average rating" %filename
         plt.title(title)
 
         plt.xlabel("SVD Dimension 1 [Arbitrary Units]")
         plt.ylabel("SVD Dimension 2 [Arbitrary Units]")
         plt.legend()
         plt.show()
-
-
 
 def load_top():
     # Load data
@@ -125,7 +131,7 @@ def load_top():
     topmovies = np.argsort(avgratings)[-10:] + 1
     topdata = data[np.where(np.in1d(data[:,1],topmovies))]
     print("data", data[:,1])
-    return popmovies, topmovies
+    return popmovies, topmovies, avgratings, numratings
 
 if __name__ == '__main__':
     main()

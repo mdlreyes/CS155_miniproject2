@@ -66,7 +66,7 @@ def get_err(U, V, Y, a, b, reg=0.0):
         i = Y[nTerm][0] - 1
         j = Y[nTerm][1] - 1
 
-        errterm += (Y[nTerm][2] - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
+        errterm += 0.5*(Y[nTerm][2] - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
 
     errterm = errterm/2.
 

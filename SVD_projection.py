@@ -6,6 +6,7 @@ def main():
     genre = "Horror"
     MODE = 6
 
+
     '''
     MODE = 1: (a) Any ten movies of your choice from the MovieLens dataset.
     MODE = 2: (d) Ten movies from the **A** genres you selected in Section 4

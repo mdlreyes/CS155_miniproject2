@@ -34,6 +34,19 @@ def grad_V(Vj, Yij, Ui, reg, eta, ai, bj, mu):
     
     return eta*(grad1-grad2)
 
+def grad_a(Ui, Yij, Vj, reg, eta, ai, bj, mu):
+
+    grad1 = reg*ai
+    grad2 = 2.*(Yij-mu - np.dot(Ui,Vj)-ai-bj)
+
+    return eta*(grad1-grad2)
+
+def grad_b(Ui, Yij, Vj, reg, eta, ai, bj, mu):
+    grad1 = reg*bj
+    grad2 = 2.*(Yij-mu - np.dot(Ui,Vj)-ai-bj)
+
+    return eta*(grad1-grad2)
+
 def get_err(U, V, Y, a, b, mu, reg=0.0):
     """
     Takes as input a matrix Y of triples (i, j, Y_ij) where i is the index of a user,
@@ -53,7 +66,7 @@ def get_err(U, V, Y, a, b, mu, reg=0.0):
         i = Y[nTerm][0] - 1
         j = Y[nTerm][1] - 1
 
-        errterm += (Y[nTerm][2] - mu - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
+        errterm += 0.5*(Y[nTerm][2] - mu - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
 
     errterm = errterm/2.
 
@@ -110,6 +123,10 @@ def train_model(M, N, K, eta, reg, Y, eps=0.0001, max_epochs=300):
             # Update row of U and column of V
             U[i,:] -= grad_U(U[i,:], Y_shuffle[nTerm][2], V.T[:,j], reg, eta, a[i], b[j], mu)
             V.T[:,j] -= grad_V(V.T[:,j], Y_shuffle[nTerm][2], U[i,:], reg, eta, a[i], b[j], mu)
+
+            # Update bias terms
+            a[i] -= grad_a(U[i,:], Y_shuffle[nTerm][2], V.T[:,j], reg, eta, a[i], b[j], mu)
+            b[j] -= grad_b(U[i,:], Y_shuffle[nTerm][2], V.T[:,j], reg, eta, a[i], b[j], mu)
 
         # Calculate new error
         errNew = get_err(U,V,Y,a,b,mu)

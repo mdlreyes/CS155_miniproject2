@@ -114,6 +114,8 @@ def runmodel(bias):
         E_train = err
         E_test = get_err(U, V, Y_test)
 
+    print 'training, test errors:', E_train, E_test
+
     # Save matrices
     if bias=='simple':
         np.savetxt('U_withbiasHW.txt',U)
@@ -134,7 +136,7 @@ if __name__ == "__main__":
     Y_test = np.loadtxt('data/test.txt')    .astype(int)
 
     # Make plots
-    visualize(Y_train, Y_test)
+    #visualize(Y_train, Y_test)
 
     # Do the main training
     #runmodel(bias='none')

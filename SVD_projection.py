@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 def main():
     genre = "Horror"
-    MODE = 8
+    MODE = 6
 
 
     '''
@@ -18,7 +19,8 @@ def main():
     MODE = 8: Movies colored by num rating
     '''
 
-    f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
+    genres = ["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"]
+    f = pd.read_table('data/movies.txt', names=genres)
     popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
 
     if MODE == 1:
@@ -46,7 +48,7 @@ def main():
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'bias_shelf']:
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -115,6 +117,38 @@ def main():
         plt.ylabel("SVD Dimension 2 [Arbitrary Units]")
         plt.legend()
         plt.show()
+        plt.savefig("Figures/fig1.png")
+
+
+        if MODE == 6:
+
+            genre_locations = []
+            column_names = ["Lee", "Devin", "Mia"]
+            heatmap = pd.DataFrame(np.zeros((len(genres[2:]), 3)),columns= column_names, index = genres[2:])
+            for genre in genres[2:]:
+                xgenre = 0.
+                ygenre = 0.
+                n = 0.
+                for i in range(len(f)):
+                    if f[genre][i] == 1:
+                        xgenre += V_tilde[0][i]
+                        ygenre += V_tilde[1][i]
+                        n += 1.
+
+                print(xgenre, ygenre, n)
+                xgenre /= n
+                ygenre /= n
+                genre_locations.append([xgenre, ygenre])
+
+            for i, lists in enumerate([lees_list, mias_list, devins_list]):
+                xavg = np.average(V_tilde[0][lists])
+                yavg = np.average(V_tilde[1][lists])
+                for j in range(len(genres[2:])):
+                    heatmap[column_names[i]][j] = np.dot([xavg, yavg], genre_locations[j])
+            sns.heatmap(heatmap, square = True, linewidths=.5)
+            plt.show()
+
+
 
 def load_top():
     # Load data

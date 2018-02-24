@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 def main():
     genre = "Horror"
-    MODE = 7
+    MODE = 6
 
 
     '''
@@ -17,8 +18,8 @@ def main():
     MODE = 7: Movies colored by avg rating
     MODE = 8: Movies colored by num rating
     '''
-
-    f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
+    genres = ["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"]
+    f = pd.read_table('data/movies.txt', names=genres)
     popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
 
     if MODE == 1:

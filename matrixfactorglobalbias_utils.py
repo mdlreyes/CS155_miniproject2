@@ -59,7 +59,9 @@ def get_err(U, V, Y, a, b, mu, reg=0.0):
 
     UF = np.sqrt(np.sum(np.power(U,2.)))
     VF = np.sqrt(np.sum(np.power(V,2.)))
-    regterm = reg/2. * (UF**2. + VF**2.)
+    aF = np.sqrt(np.sum(np.power(V,2.)))
+    bF = np.sqrt(np.sum(np.power(V,2.)))
+    regterm = reg/2. * (UF**2. + VF**2. + aF**2. + bF**2.)
 
     errterm = 0.
     for nTerm in range(len(Y)):
@@ -67,8 +69,6 @@ def get_err(U, V, Y, a, b, mu, reg=0.0):
         j = Y[nTerm][1] - 1
 
         errterm += 0.5*(Y[nTerm][2] - mu - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
-
-    errterm = errterm/2.
 
     return regterm + errterm
 

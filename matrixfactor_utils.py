@@ -53,8 +53,6 @@ def get_err(U, V, Y, reg=0.0):
 
         errterm += 0.5*(Y[nTerm][2] - np.dot(U[i,:],V.T[:,j]))**2.
 
-    errterm = errterm/2.
-
     return regterm + errterm
 
 

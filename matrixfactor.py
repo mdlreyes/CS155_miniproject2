@@ -83,7 +83,7 @@ def runmodel(bias):
 
     # Parameters
     Ks = 20
-    reg = 0.0
+    reg = 0.01
     eta = 0.03 # learning rate
 
     if bias=='simple':

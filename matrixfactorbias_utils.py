@@ -36,13 +36,14 @@ def grad_V(Vj, Yij, Ui, reg, eta, ai, bj):
 
 def grad_a(Ui, Yij, Vj, reg, eta, ai, bj):
 
-    grad1 = reg*ai
+    grad1 = 0.
     grad2 = 2.*(Yij-np.dot(Ui,Vj)-ai-bj)
 
     return eta*(grad1-grad2)
 
 def grad_b(Ui, Yij, Vj, reg, eta, ai, bj):
-    grad1 = reg*bj
+
+    grad1 = 0.
     grad2 = 2.*(Yij-np.dot(Ui,Vj)-ai-bj)
 
     return eta*(grad1-grad2)
@@ -67,8 +68,6 @@ def get_err(U, V, Y, a, b, reg=0.0):
         j = Y[nTerm][1] - 1
 
         errterm += 0.5*(Y[nTerm][2] - np.dot(U[i,:],V.T[:,j]) - a[i] - b[j])**2.
-
-    errterm = errterm/2.
 
     return regterm + errterm
 

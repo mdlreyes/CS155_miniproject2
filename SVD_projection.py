@@ -145,7 +145,7 @@ def main():
                     heatmap[column_names[i]][j] = np.dot([xavg, yavg], genre_locations[j])
             sheat = heatmap.sort_values(by = ['Lee'], ascending = False)
             sns.heatmap(sheat, square = True, linewidths=.5)
-            plt.title("Cosine similarities between Genres and Users, File: %S" %filename)
+            plt.title("Cosine similarities between Genres and Users, File: %s" %filename)
             plt.show()
 
 

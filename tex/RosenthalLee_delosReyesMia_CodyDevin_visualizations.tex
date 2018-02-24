@@ -1,0 +1,124 @@
+\newif\ifshowsolutions
+\showsolutionstrue
+\input{preamble}
+\newcommand{\boldline}[1]{\underline{\textbf{#1}}}
+
+\chead{%
+  {\vbox{%
+      \vspace{2mm}
+      \large
+      Machine Learning \& Data Mining \hfill
+      Caltech CS/CNS/EE 155 \hfill \\[1pt]
+      Miniproject 2 Visualizations\hfill
+      Due February $23^{rd}$, 2018 \\
+    }
+  }
+}
+
+\begin{document}
+\pagestyle{fancy}
+
+\begin{itemize}
+
+    \item \boldline{Group members} \\
+    Mia de los Reyes, Lee Rosenthal, and Devin Cody
+    
+    \item \boldline{Team name} \\
+    Team Segfault
+    
+\end{itemize}
+
+\section{Basic Visualizations}
+
+\subsection{All ratings in the MovieLens Dataset}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../Figures/allratings.png}
+    \caption{All ratings.}
+    \end{figure}
+    
+\subsection{All ratings of the ten most popular movies}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/10mostpopratings.png}
+    \caption{10 most popular ratings.}
+    \end{figure}
+    
+\subsection{All ratings of the ten best movies}    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/10bestratings.png}
+    \caption{10 best ratings.}
+    \end{figure}
+
+\subsection{All ratings of movies from three genres}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/Actionratings.png}
+    \caption{Action ratings.}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/Animationratings.png}
+    \caption{Animation ratings.}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/Comedyratings.png}
+    \caption{Comedy ratings.}
+    \end{figure}
+
+\section{Matrix Factorization Visualizations}
+
+\subsection{Any ten movies of your choice from the MovieLens dataset.}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../Figures/fig1.png}
+    \caption{Ten handpicked movies, using basic factorization from HW5.}
+    \end{figure}
+
+\subsection{The ten most popular movies}    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../Figures/fig2.png}
+    \caption{Ten most popular movies, using basic factorization from HW5.}
+    \end{figure}
+
+\subsection{The ten best movies}    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../Figures/fig3.png}
+    \caption{Ten best movies, using basic factorization from HW5.}
+    \end{figure}
+
+\subsection{Ten movies from the three genres selected in Section 4}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/fig4a.png}
+    \caption{Ten action movies, using basic factorization from HW5.}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/fig4b.png}
+    \caption{Ten adventure movies, using basic factorization from HW5.}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/fig4c.png}
+    \caption{Ten comedy movies, using basic factorization from HW5.}
+    \end{figure}
+    
+    %\begin{figure}[H]
+    %\centering
+    %\includegraphics[width=0.75\textwidth]{../Figures/TenHandPickedMoviesBasicwBias.png}
+    %\caption{Ten handpicked movies, basic, with bias.}
+    %\end{figure}
+
+    %\begin{figure}[H]
+    %\centering
+    %\includegraphics[width=0.75\textwidth]{../Figures/TenHandPickedMoviesBasicwGlobalBias.png}
+    %\caption{Ten handpicked movies, basic, with global bias.}
+    %\end{figure}
+
+
+\end{document}

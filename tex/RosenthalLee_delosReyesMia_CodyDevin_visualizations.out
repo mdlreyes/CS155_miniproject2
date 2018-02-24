@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Basic Visualizations}{}% 1
+\BOOKMARK [2][-]{section*.1}{All ratings in the MovieLens Dataset}{section.1}% 2
+\BOOKMARK [2][-]{figure.caption.2}{All ratings of the ten most popular movies}{section.1}% 3
+\BOOKMARK [2][-]{figure.caption.3}{All ratings of the ten best movies}{section.1}% 4
+\BOOKMARK [2][-]{figure.caption.4}{All ratings of movies from three genres}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Matrix Factorization Visualizations}{}% 6
+\BOOKMARK [2][-]{section*.8}{Any ten movies of your choice from the MovieLens dataset.}{section.2}% 7
+\BOOKMARK [2][-]{figure.caption.9}{The ten most popular movies}{section.2}% 8
+\BOOKMARK [2][-]{figure.caption.10}{The ten best movies}{section.2}% 9
+\BOOKMARK [2][-]{figure.caption.11}{Ten movies from the three genres selected in Section 4}{section.2}% 10

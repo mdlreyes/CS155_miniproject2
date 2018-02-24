@@ -25,11 +25,11 @@ def runOffShelf(bias=True):
 
 	# Save results
 	if bias:
-		np.savetxt('U_shelf.txt', u)
-		np.savetxt('V_shelf.txt', v)
+		np.savetxt('UVmatrices/U_shelf.txt', u)
+		np.savetxt('UVmatrices/V_shelf.txt', v)
 	else:
-		np.savetxt('U_shelfnobias.txt', u)
-		np.savetxt('V_shelfnobias.txt', v)
+		np.savetxt('UVmatrices/U_shelfnobias.txt', u)
+		np.savetxt('UVmatrices/V_shelfnobias.txt', v)
 
 if __name__ == '__main__':
 

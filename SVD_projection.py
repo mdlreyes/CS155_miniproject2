@@ -4,7 +4,7 @@ import pandas as pd
 
 def main():
     genre = "Horror"
-    MODE = 8
+    MODE = 7
 
 
     '''
@@ -46,7 +46,7 @@ def main():
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf']:
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -89,8 +89,8 @@ def main():
             plt.colorbar()
         elif MODE == 8:
             highpop = np.where(numratings > 300)[0]
-            print V_tilde[0][highpop]
-            plt.scatter(V_tilde[0][highpop], V_tilde[1][highpop], c=numratings[highpop], cmap="plasma")
+            #plt.scatter(V_tilde[0][highpop], V_tilde[1][highpop], c=numratings[highpop], cmap="plasma")
+            plt.scatter(V_tilde[0], V_tilde[1], c=numratings, cmap="plasma")
             plt.colorbar()
 
         if MODE == 1:

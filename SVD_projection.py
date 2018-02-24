@@ -4,12 +4,17 @@ import pandas as pd
 import seaborn as sns
 
 def main():
+<<<<<<< HEAD
     genre = "Comedy"
     #<<<<<<< HEAD
     MODE = 2
     #=======
     #    MODE = 6
     #>>>>>>> f003b2f9f3f74ed1eae9c6c6bd4a50a8a42b670a
+=======
+    genre = "Horror"
+    MODE = 6
+>>>>>>> 58aeec57ed4dbfba8c0ed2df11508cfe95148ea5
 
 
     '''
@@ -22,7 +27,10 @@ def main():
     MODE = 7: Movies colored by avg rating
     MODE = 8: Movies colored by num rating
     '''
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58aeec57ed4dbfba8c0ed2df11508cfe95148ea5
     genres = ["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"]
     f = pd.read_table('data/movies.txt', names=genres)
     popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
@@ -52,7 +60,12 @@ def main():
 
 
     location = 'UVmatrices/'
+<<<<<<< HEAD
     for filename in ['basicHW']: #, 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
+=======
+
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
+>>>>>>> 58aeec57ed4dbfba8c0ed2df11508cfe95148ea5
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -123,6 +136,37 @@ def main():
         plt.legend()
         plt.savefig("Figures/fig4c.png")
         plt.show()
+        plt.savefig("Figures/fig1.png")
+
+
+        if MODE == 6:
+            # fig = plt.subplots(figsize=(5,10))
+            genre_locations = []
+            column_names = ["Lee", "Devin", "Mia"]
+            heatmap = pd.DataFrame(np.zeros((len(genres[2:]), 3)),columns= column_names, index = genres[2:])
+            for genre in genres[2:]:
+                xgenre = 0.
+                ygenre = 0.
+                n = 0.
+                for i in range(len(f)):
+                    if f[genre][i] == 1:
+                        xgenre += V_tilde[0][i]
+                        ygenre += V_tilde[1][i]
+                        n += 1.
+                xgenre /= n
+                ygenre /= n
+                genre_locations.append([xgenre, ygenre])
+
+            for i, lists in enumerate([lees_list, devins_list, mias_list]):
+                xavg = np.average(V_tilde[0][lists])
+                yavg = np.average(V_tilde[1][lists])
+                for j in range(len(genres[2:])):
+                    heatmap[column_names[i]][j] = np.dot([xavg, yavg], genre_locations[j])
+            sheat = heatmap.sort_values(by = ['Lee'], ascending = False)
+            sns.heatmap(sheat, square = True, linewidths=.5)
+            plt.title("Cosine similarities between Genres and Users, File: %S" %filename)
+            plt.show()
+
 
 
         if MODE == 6:

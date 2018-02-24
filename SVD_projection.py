@@ -1,11 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
 def main():
     genre = "Horror"
-    MODE = 6
+    MODE = 7
 
 
     '''
@@ -19,8 +18,7 @@ def main():
     MODE = 8: Movies colored by num rating
     '''
 
-    genres = ["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"]
-    f = pd.read_table('data/movies.txt', names=genres)
+    f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
     popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
 
     if MODE == 1:
@@ -43,12 +41,13 @@ def main():
     elif MODE == 6:
         #Add yo shit here, bitchs:
         lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
-        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590]
+        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590, ]
         mias_list   = [0, 7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW']:#, 'withbiasHW', 'withglobalbiasHW', 'shelf']:
+
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -91,8 +90,8 @@ def main():
             plt.colorbar()
         elif MODE == 8:
             highpop = np.where(numratings > 300)[0]
-            print V_tilde[0][highpop]
-            plt.scatter(V_tilde[0][highpop], V_tilde[1][highpop], c=numratings[highpop], cmap="plasma")
+            #plt.scatter(V_tilde[0][highpop], V_tilde[1][highpop], c=numratings[highpop], cmap="plasma")
+            plt.scatter(V_tilde[0], V_tilde[1], c=numratings, cmap="plasma")
             plt.colorbar()
 
         if MODE == 1:
@@ -147,7 +146,6 @@ def main():
             sns.heatmap(sheat, square = True, linewidths=.5)
             plt.title
             plt.show()
-
 
 
 def load_top():

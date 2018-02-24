@@ -83,8 +83,8 @@ def runmodel(bias):
 
     # Parameters
     Ks = 20
-    reg = 0.02
-    eta = 0.03 # learning rate
+    reg = 0.02   # regularization param
+    eta = 0.005 # learning rate
 
     if bias=='simple':
         from matrixfactorbias_utils import train_model, get_err

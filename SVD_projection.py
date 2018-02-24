@@ -1,10 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 def main():
-    genre = "Horror"
-    MODE = 7
+    genre = "Comedy"
+    #<<<<<<< HEAD
+    MODE = 2
+    #=======
+    #    MODE = 6
+    #>>>>>>> f003b2f9f3f74ed1eae9c6c6bd4a50a8a42b670a
 
 
     '''
@@ -18,11 +23,12 @@ def main():
     MODE = 8: Movies colored by num rating
     '''
 
-    f = pd.read_table('data/movies.txt', names=["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"])
+    genres = ["Movie Id", "Movie Title", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary","Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"]
+    f = pd.read_table('data/movies.txt', names=genres)
     popmovies, topmovies, avgratings, numratings = load_top() #load popular and top data
 
     if MODE == 1:
-        r = [0, 1, 2, 7, 11, 27, 34, 70, 77, 102]
+        r = [0, 1, 2, 7, 11, 27, 33, 70, 77, 102]
     elif MODE == 2:
         r = []
         for i in range(len(f)):
@@ -41,12 +47,12 @@ def main():
     elif MODE == 6:
         #Add yo shit here, bitchs:
         lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
-        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590, ]
+        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590]
         mias_list   = [0, 7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
+    for filename in ['basicHW']: #, 'withbiasHW', 'withglobalbiasHW', 'shelf', 'shelfnobias']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -78,7 +84,8 @@ def main():
         if MODE < 6 :
             plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             for i in range(len(r)):
-                plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]], label = f["Movie Title"][r[i]])
+                plt.scatter(V_tilde[0][r[i]],V_tilde[1][r[i]]) #, label = f["Movie Title"][r[i]])
+                plt.text(V_tilde[0][r[i]],V_tilde[1][r[i]], f["Movie Title"][r[i]][:-6])
         elif MODE == 6:
             plt.scatter(V_tilde[0],V_tilde[1], c=color)#"k", alpha = .1)
             plt.scatter(V_tilde[0][lees_list],V_tilde[1][lees_list], label = "Lee's Movies")
@@ -114,7 +121,39 @@ def main():
         plt.xlabel("SVD Dimension 1 [Arbitrary Units]")
         plt.ylabel("SVD Dimension 2 [Arbitrary Units]")
         plt.legend()
+        plt.savefig("Figures/fig4c.png")
         plt.show()
+
+
+        if MODE == 6:
+
+            genre_locations = []
+            column_names = ["Lee", "Devin", "Mia"]
+            heatmap = pd.DataFrame(np.zeros((len(genres[2:]), 3)),columns= column_names, index = genres[2:])
+            for genre in genres[2:]:
+                xgenre = 0.
+                ygenre = 0.
+                n = 0.
+                for i in range(len(f)):
+                    if f[genre][i] == 1:
+                        xgenre += V_tilde[0][i]
+                        ygenre += V_tilde[1][i]
+                        n += 1.
+
+                print(xgenre, ygenre, n)
+                xgenre /= n
+                ygenre /= n
+                genre_locations.append([xgenre, ygenre])
+
+            for i, lists in enumerate([lees_list, mias_list, devins_list]):
+                xavg = np.average(V_tilde[0][lists])
+                yavg = np.average(V_tilde[1][lists])
+                for j in range(len(genres[2:])):
+                    heatmap[column_names[i]][j] = np.dot([xavg, yavg], genre_locations[j])
+            sns.heatmap(heatmap, square = True, linewidths=.5)
+            plt.show()
+
+
 
 def load_top():
     # Load data

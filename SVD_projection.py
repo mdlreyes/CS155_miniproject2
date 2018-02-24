@@ -48,7 +48,7 @@ def main():
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf']:
+    for filename in ['basicHW']:#, 'withbiasHW', 'withglobalbiasHW', 'shelf']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')
@@ -121,7 +121,7 @@ def main():
 
 
         if MODE == 6:
-
+            # fig = plt.subplots(figsize=(5,10))
             genre_locations = []
             column_names = ["Lee", "Devin", "Mia"]
             heatmap = pd.DataFrame(np.zeros((len(genres[2:]), 3)),columns= column_names, index = genres[2:])
@@ -134,18 +134,18 @@ def main():
                         xgenre += V_tilde[0][i]
                         ygenre += V_tilde[1][i]
                         n += 1.
-
-                print(xgenre, ygenre, n)
                 xgenre /= n
                 ygenre /= n
                 genre_locations.append([xgenre, ygenre])
 
-            for i, lists in enumerate([lees_list, mias_list, devins_list]):
+            for i, lists in enumerate([lees_list, devins_list, mias_list]):
                 xavg = np.average(V_tilde[0][lists])
                 yavg = np.average(V_tilde[1][lists])
                 for j in range(len(genres[2:])):
                     heatmap[column_names[i]][j] = np.dot([xavg, yavg], genre_locations[j])
-            sns.heatmap(heatmap, square = True, linewidths=.5)
+            sheat = heatmap.sort_values(by = ['Lee'], ascending = False)
+            sns.heatmap(sheat, square = True, linewidths=.5)
+            plt.title
             plt.show()
 
 

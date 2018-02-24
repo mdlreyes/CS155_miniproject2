@@ -40,12 +40,12 @@ def main():
     elif MODE == 6:
         #Add yo shit here, bitchs:
         lees_list   = [0, 3, 11, 24, 30, 49, 55, 63, 64, 88, 99, 101, 126, 133, 142, 149, 155, 172, 195, 201]
-        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590, ]
+        devins_list = [11, 55, 68, 16, 95, 97, 167, 172, 190, 362, 590]
         mias_list   = [0, 7,49,70,81,82,93,94,113,120,150,171,172,180,167,256,274,484,541,819]
 
 
     location = 'UVmatrices/'
-    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf']:
+    for filename in ['basicHW', 'withbiasHW', 'withglobalbiasHW', 'shelf', 'bias_shelf']:
         # print filename
         # Load from file
         V = np.genfromtxt(location+'V_' + filename + '.txt', dtype='double')

@@ -83,7 +83,7 @@ def runmodel(bias):
 
     # Parameters
     Ks = 20
-    reg = 0.0
+    reg = 0.02
     eta = 0.03 # learning rate
 
     if bias=='simple':
@@ -97,22 +97,22 @@ def runmodel(bias):
 
     # Train model and compute training and test error
     if bias=='simple':
-        U, V, err, a, b = train_model(M, N, Ks, eta, reg, Y_train)    
+        U, V, a, b = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = np.sqrt(err/len(Y_train))
-        E_test = np.sqrt(get_err(U, V, Y_test, a, b)/len(Y_test))
+        E_train = np.sqrt(2.*get_err(U, V, Y_train, a, b, reg=0.0)/len(Y_train))
+        E_test = np.sqrt(2.*get_err(U, V, Y_test, a, b, reg=0.0)/len(Y_test))
 
     elif bias=='global':
-        U, V, err, a, b, mu = train_model(M, N, Ks, eta, reg, Y_train)    
+        U, V, a, b, mu = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = np.sqrt(err/len(Y_train))
-        E_test = np.sqrt(get_err(U, V, Y_test, a, b, mu)/len(Y_test))
+        E_train = np.sqrt(2.*get_err(U, V, Y_train, a, b, mu, reg=0.0)/len(Y_train))
+        E_test = np.sqrt(2.*get_err(U, V, Y_test, a, b, mu, reg=0.0)/len(Y_test))
 
     else:
-        U, V, err = train_model(M, N, Ks, eta, reg, Y_train)    
+        U, V = train_model(M, N, Ks, eta, reg, Y_train)    
 
-        E_train = np.sqrt(err/len(Y_train))
-        E_test = np.sqrt(get_err(U, V, Y_test)/len(Y_test))
+        E_train = np.sqrt(2.*get_err(U, V, Y_train, reg=0.0)/len(Y_train))
+        E_test = np.sqrt(2.*get_err(U, V, Y_test, reg=0.0)/len(Y_test))
 
     print 'training, test errors:', E_train, E_test
 

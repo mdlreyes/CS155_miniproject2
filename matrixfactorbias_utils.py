@@ -142,4 +142,4 @@ def train_model(M, N, K, eta, reg, Y, eps=0.0001, max_epochs=300):
             else:
                 break
 
-    return U, V, errNew, a, b
+    return U, V, a, b
